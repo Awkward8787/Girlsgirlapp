@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gg-black: #000000;
+  --color-gg-pink: #ff3399;
+  --color-gg-pink-hot: #ff007f;
+  --color-gg-pink-soft: #ff6eb4;
+  --color-gg-purple: #9b59b6;
+  --color-gg-surface: #111111;
+  --color-gg-surface-elevated: #1a1a1a;
+  --color-gg-border: #2a2a2a;
+  --color-gg-muted: #888888;
+  --color-gg-cream: #f5f0e8;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-gg-black text-white antialiased;
+  }
+}
+
+@layer utilities {
+  .gg-gradient-pink {
+    background: linear-gradient(135deg, #ff3399 0%, #ff007f 50%, #9b59b6 100%);
+  }
+
+  .gg-gradient-banner {
+    background: linear-gradient(135deg, #ff3399 0%, #c850c0 50%, #9b59b6 100%);
+  }
+
+  .gg-text-gradient {
+    background: linear-gradient(135deg, #ff3399, #ff6eb4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
