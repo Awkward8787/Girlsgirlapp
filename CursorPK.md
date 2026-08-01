@@ -18,7 +18,7 @@
 | **This repository** | [github.com/Awkward8787/Girlsgirlapp](https://github.com/Awkward8787/Girlsgirlapp) — branch `master` |
 | **npm package name** | `girls-girl-app` |
 | **Public deploy** | Not deployed yet (local: `npm run dev` → `http://localhost:3000`) |
-| **Production target** | Native **iOS** (SwiftUI) + Medusa + Appwrite + API gateway — **not started in this repo** |
+| **Production target** | Native **iOS** (SwiftUI) in sibling repo `../Girls girl/` + Medusa + Appwrite + API gateway — **iOS shell scaffolded** |
 
 ### What exists in this repo today
 
@@ -99,7 +99,7 @@ Images are **Unsplash placeholders**, not final brand photography or green-scree
 | Admin dashboard (web) | ❌ Not in repo | `admin.girlsgirlwttb.com` — Medusa Admin + Girls Girl ops UI |
 | Promotions / promo codes | ⚠️ Bag UI only (non-functional) | Medusa promotions — created in admin dashboard |
 | RBAC (staff + customer roles) | ❌ Not built | Gateway + Appwrite + Medusa Admin roles (see §8A) |
-| iOS app | ❌ Not in repo | `GirlsGirlWTTB/` (future) |
+| iOS app | 🟡 Shell scaffolded | `../Girls girl/GirlsGirlWTTB/` — Xcode target **GirlsGirlWTTB**, bundle `com.girlsgirlwttb.app` |
 | API gateway | ❌ Not in repo | `/srv/girlsgirl/gateway/` on server |
 | Medusa / Appwrite | ❌ Not connected | Server deployment |
 
@@ -270,7 +270,7 @@ Never test new product logic, migrations, or payment changes directly in product
 
 ---
 
-## 4. iOS technology (planned — not in this repo yet)
+## 4. iOS technology
 
 | Layer | Choice |
 |-------|--------|
@@ -285,32 +285,51 @@ Never test new product logic, migrations, or payment changes directly in product
 | Push | APNs |
 | Deep links | Universal Links (products, orders, style posts) |
 
-### iOS project structure (to be created in Xcode)
+### iOS Xcode project (active)
+
+| Field | Value |
+|-------|-------|
+| **Repo path** | `../Girls girl/` (sibling to this web prototype) |
+| **Project file** | `Girls girl.xcodeproj` |
+| **Target / scheme** | `GirlsGirlWTTB` |
+| **Source root** | `GirlsGirlWTTB/` |
+| **Bundle ID** | `com.girlsgirlwttb.app` |
+| **Display name** | Girls Girl WTTB |
+| **Deployment target** | iOS 18.0 |
+| **Interface** | Dark mode, portrait iPhone |
+
+Open in Xcode:
+
+```bash
+open "../Girls girl/Girls girl.xcodeproj"
+```
+
+### iOS project structure
 
 ```
-GirlsGirlWTTB/                   # Future — not in Girlsgirlapp repo yet
-├── App/
+GirlsGirlWTTB/
+├── App/                         # GirlsGirlWTTBApp, MainTabView (5 tabs)
 ├── Core/
-│   ├── Networking/
-│   ├── Authentication/
-│   ├── Storage/
-│   ├── Analytics/
-│   └── DesignSystem/
+│   ├── Authentication/          # SessionStore (guest | customer)
+│   ├── DesignSystem/            # GGColors, GGScreenShell
+│   ├── Networking/              # (planned) GatewayClient
+│   ├── Storage/                 # (planned) Keychain
+│   └── Analytics/               # (planned)
 ├── Features/
 │   ├── Home/
 │   ├── Shop/
-│   ├── Product/
-│   ├── Search/
-│   ├── Wishlist/
 │   ├── StyleFeed/
 │   ├── Cart/
-│   ├── Checkout/
-│   ├── Orders/
-│   ├── Returns/
-│   └── Profile/
+│   ├── Profile/
+│   ├── Product/                 # (planned)
+│   ├── Wishlist/                # (planned)
+│   ├── Checkout/                # (planned)
+│   ├── Orders/                  # (planned)
+│   └── Returns/                 # (planned)
 ├── Models/
-├── Services/
+├── Services/                    # MockCatalog (seed data)
 └── Resources/
+    └── Assets.xcassets
 ```
 
 ---
