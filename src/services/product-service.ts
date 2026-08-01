@@ -7,6 +7,8 @@ import type {
   TrendingLook,
 } from "@/models/product";
 
+/** Live API: set NEXT_PUBLIC_API_MODE=live in .env.local and use @/lib/api gatewayFetch. */
+
 const PRODUCT_IMAGES = {
   pinkShine: "/products/pink-shine-girl-transparent.png",
   pinkShineReference: "/products/pink-shine-reference.png",
