@@ -20,13 +20,13 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className={`group block shrink-0 transition-transform hover:scale-[1.02] ${
-        isHorizontal ? "w-[160px] sm:w-[180px]" : "w-full"
+      className={`group block shrink-0 transition-opacity duration-300 hover:opacity-95 ${
+        isHorizontal ? "w-[168px] sm:w-[200px]" : "w-full"
       }`}
     >
-      <div className="relative overflow-hidden rounded-xl bg-gg-surface">
+      <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gg-surface">
         {product.isNew && (
-          <span className="absolute left-2 top-2 z-10 rounded-md bg-gg-pink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+          <span className="absolute left-3 top-3 z-10 border border-gg-champagne/40 bg-gg-black/60 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.2em] text-gg-champagne backdrop-blur-sm">
             New
           </span>
         )}
@@ -34,30 +34,37 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
           type="button"
           aria-label="Add to wishlist"
           onClick={(e) => e.preventDefault()}
-          className="absolute right-2 top-2 z-10 rounded-full bg-black/40 p-1.5 text-white backdrop-blur-sm transition-colors hover:text-gg-pink"
+          className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/30 p-2 text-white/70 backdrop-blur-sm transition-colors hover:border-gg-pink/40 hover:text-gg-pink"
         >
-          <Heart className="h-4 w-4" />
+          <Heart className="h-3.5 w-3.5" strokeWidth={1.5} />
         </button>
-        <div className={`relative ${isHorizontal ? "aspect-[3/4]" : "aspect-square"}`}>
+        <div className="relative aspect-[3/4] overflow-hidden">
           <Image
             src={product.imageUrl}
             alt={product.name}
             fill
-            sizes={isHorizontal ? "180px" : "(max-width:768px) 50vw, 25vw"}
-            className="object-cover transition-transform group-hover:scale-105"
+            sizes={isHorizontal ? "200px" : "(max-width:768px) 50vw, 25vw"}
+            className="object-contain p-3 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
       </div>
-      <div className="mt-2.5">
-        <h3 className="truncate text-sm font-semibold text-white">{product.name}</h3>
-        <p className="truncate text-xs text-gg-muted">{product.subtitle}</p>
-        <div className="mt-1 flex items-center justify-between">
-          <span className="text-sm font-bold text-gg-pink">{formatPrice(product.price)}</span>
-          <div className="flex gap-1">
+      <div className="mt-3 px-0.5">
+        <h3 className="truncate font-medium text-sm tracking-wide text-gg-white">
+          {product.name}
+        </h3>
+        <p className="mt-0.5 truncate text-[11px] uppercase tracking-wider text-gg-muted">
+          {product.subtitle}
+        </p>
+        <div className="mt-2 flex items-center justify-between">
+          <span className="text-sm font-medium tabular-nums tracking-wide text-gg-pink">
+            {formatPrice(product.price)}
+          </span>
+          <div className="flex gap-1.5">
             {product.colors.slice(0, 4).map((color) => (
               <span
                 key={color.id}
-                className="h-3 w-3 rounded-full border border-gg-border"
+                className="h-2.5 w-2.5 rounded-full ring-1 ring-white/10"
                 style={{ backgroundColor: color.hex }}
                 title={color.name}
               />

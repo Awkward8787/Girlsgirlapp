@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gg-black: #000000;
-  --color-gg-pink: #ff3399;
+  --color-gg-black: #050505;
+  --color-gg-ink: #0c0c0c;
+  --color-gg-pink: #e91e8c;
   --color-gg-pink-hot: #ff007f;
-  --color-gg-pink-soft: #ff6eb4;
-  --color-gg-purple: #9b59b6;
-  --color-gg-surface: #111111;
+  --color-gg-pink-soft: #f06eb4;
+  --color-gg-purple: #6b2d5c;
+  --color-gg-champagne: #d4af8c;
+  --color-gg-surface: #121212;
   --color-gg-surface-elevated: #1a1a1a;
-  --color-gg-border: #2a2a2a;
-  --color-gg-muted: #888888;
+  --color-gg-border: rgba(255, 255, 255, 0.08);
+  --color-gg-muted: #8a8a8a;
   --color-gg-cream: #f5f0e8;
+  --color-gg-white: #fafafa;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
 }
 
 @layer base {
@@ -22,24 +25,74 @@
   }
 
   body {
-    @apply bg-gg-black text-white antialiased;
+    @apply bg-gg-black text-gg-white antialiased;
+  }
+
+  ::selection {
+    background: rgba(233, 30, 140, 0.35);
+    color: #fff;
   }
 }
 
 @layer utilities {
+  .gg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
   .gg-gradient-pink {
-    background: linear-gradient(135deg, #ff3399 0%, #ff007f 50%, #9b59b6 100%);
+    background: linear-gradient(135deg, #e91e8c 0%, #c21875 100%);
+    box-shadow: 0 4px 24px rgba(233, 30, 140, 0.25);
   }
 
   .gg-gradient-banner {
-    background: linear-gradient(135deg, #ff3399 0%, #c850c0 50%, #9b59b6 100%);
+    background: linear-gradient(
+      145deg,
+      rgba(233, 30, 140, 0.18) 0%,
+      rgba(107, 45, 92, 0.35) 50%,
+      rgba(12, 12, 12, 0.95) 100%
+    );
   }
 
   .gg-text-gradient {
-    background: linear-gradient(135deg, #ff3399, #ff6eb4);
+    background: linear-gradient(135deg, #f06eb4, #e91e8c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .gg-editorial-label {
+    @apply text-[10px] font-medium uppercase tracking-[0.35em] text-gg-pink;
+  }
+
+  .gg-section-title {
+    @apply font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gg-white;
+  }
+
+  .gg-display {
+    @apply font-display font-semibold leading-[1.05] tracking-tight text-gg-white;
+  }
+
+  .gg-card {
+    @apply rounded-2xl border border-white/[0.08] bg-gg-surface;
+  }
+
+  .gg-btn-primary {
+    background: linear-gradient(135deg, #e91e8c 0%, #c21875 100%);
+    box-shadow: 0 4px 24px rgba(233, 30, 140, 0.25);
+    @apply inline-flex items-center justify-center rounded-full px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:brightness-110 active:scale-[0.98];
+  }
+
+  .gg-btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-gg-white transition-all duration-300 hover:border-white/25 hover:bg-white/[0.06];
+  }
+
+  .gg-link-accent {
+    @apply text-[11px] font-medium uppercase tracking-[0.18em] text-gg-pink transition-colors duration-200 hover:text-gg-pink-soft;
+  }
+
+  .gg-image-vignette::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-gradient-to-t from-gg-black/80 via-transparent to-gg-black/20;
   }
 
   .hide-scrollbar {

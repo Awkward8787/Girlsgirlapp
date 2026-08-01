@@ -28,11 +28,14 @@ export function CartClient({ items }: CartClientProps) {
     <div className="mx-auto max-w-7xl md:grid md:grid-cols-[1fr_380px] md:gap-8 md:px-6">
       {/* Cart items */}
       <div>
-        <div className="flex items-center justify-between px-4 py-4 md:px-0">
-          <h1 className="text-lg font-black uppercase tracking-wide text-white">
-            My Bag ({items.length})
-          </h1>
-          <button type="button" className="text-sm font-semibold text-gg-pink">
+        <div className="flex items-center justify-between px-4 py-6 md:px-0">
+          <div>
+            <p className="gg-editorial-label">Cart</p>
+            <h1 className="gg-display mt-1 text-2xl uppercase md:text-3xl">
+              My Bag ({items.length})
+            </h1>
+          </div>
+          <button type="button" className="gg-link-accent">
             Edit
           </button>
         </div>
@@ -91,7 +94,7 @@ export function CartClient({ items }: CartClientProps) {
 
       {/* Checkout sidebar */}
       <div className="mt-4 space-y-4 px-4 pb-8 md:mt-0 md:px-0">
-        <div className="rounded-xl bg-gg-surface p-4 md:sticky md:top-24">
+        <div className="rounded-2xl border border-white/[0.06] bg-gg-surface p-5 md:sticky md:top-28">
           <div className="flex gap-2">
             <input
               type="text"
@@ -131,15 +134,12 @@ export function CartClient({ items }: CartClientProps) {
 
           <button
             type="button"
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl gg-gradient-pink py-4 text-sm font-bold uppercase tracking-wide text-white transition-opacity hover:opacity-90"
+            className="gg-btn-primary mt-5 w-full gap-2"
           >
-            <Lock className="h-4 w-4" />
+            <Lock className="h-4 w-4" strokeWidth={1.5} />
             Checkout
           </button>
-          <button
-            type="button"
-            className="mt-3 flex w-full items-center justify-center gap-1 rounded-xl bg-white py-4 text-sm font-semibold text-black"
-          >
+          <button type="button" className="gg-btn-ghost mt-3 w-full">
             <span aria-hidden="true"></span>
             Pay
           </button>

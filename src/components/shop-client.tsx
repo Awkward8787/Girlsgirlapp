@@ -33,30 +33,36 @@ export function ShopClient() {
   }, [category, searchQuery]);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 md:px-6">
-      {/* Search */}
-      <div className="relative mt-4">
-        <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gg-pink" />
+    <div data-od-id="shop" className="mx-auto max-w-7xl px-4 md:px-8">
+      <div className="mt-6 md:mt-8">
+        <p className="gg-editorial-label">Catalog</p>
+        <h1 className="gg-display mt-2 text-3xl uppercase md:text-4xl">Shop</h1>
+      </div>
+
+      <div className="relative mt-8">
+        <Search
+          className="absolute left-5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30"
+          strokeWidth={1.5}
+        />
         <input
           type="search"
           placeholder="Search sets, tops, bottoms & more..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-full bg-gg-surface py-3.5 pl-11 pr-4 text-sm text-white placeholder:text-gg-muted focus:outline-none focus:ring-1 focus:ring-gg-pink"
+          className="w-full rounded-full border border-white/[0.08] bg-gg-surface py-4 pl-12 pr-5 text-sm text-gg-white placeholder:text-gg-muted focus:border-gg-pink/30 focus:outline-none focus:ring-1 focus:ring-gg-pink/20"
         />
       </div>
 
-      {/* Category tabs */}
-      <div className="mt-4 flex gap-2 overflow-x-auto hide-scrollbar">
+      <div className="mt-5 flex gap-2 overflow-x-auto hide-scrollbar">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setCategory(cat.id)}
-            className={`shrink-0 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+            className={`shrink-0 rounded-full border px-5 py-2.5 text-[11px] font-medium uppercase tracking-wider transition-all ${
               category === cat.id
-                ? "bg-gg-pink text-white"
-                : "text-white hover:bg-gg-surface"
+                ? "border-gg-pink/50 bg-gg-pink/10 text-gg-pink"
+                : "border-white/[0.08] text-white/60 hover:border-white/15 hover:text-white"
             }`}
           >
             {cat.label}
@@ -64,26 +70,27 @@ export function ShopClient() {
         ))}
       </div>
 
-      {/* Count & sort */}
-      <div className="mt-4 flex items-center justify-between text-sm">
-        <span className="text-white">{filteredProducts.length} Items</span>
+      <div className="mt-6 flex items-center justify-between border-b border-white/[0.06] pb-4 text-sm">
+        <span className="text-[11px] uppercase tracking-wider text-white/50">
+          {filteredProducts.length} Pieces
+        </span>
         <button
           type="button"
-          className="flex items-center gap-1.5 font-medium text-gg-pink"
+          className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-white/50 transition-colors hover:text-gg-pink"
         >
-          <SlidersHorizontal className="h-4 w-4" />
+          <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.5} />
           Sort: Newest
-          <ChevronDown className="h-3.5 w-3.5" />
+          <ChevronDown className="h-3 w-3" strokeWidth={1.5} />
         </button>
       </div>
 
-      {/* Product grid */}
       {filteredProducts.length === 0 ? (
-        <div className="py-16 text-center">
-          <p className="text-gg-muted">No products found. Try a different search.</p>
+        <div className="py-20 text-center">
+          <p className="font-display text-lg italic text-white/40">No pieces found.</p>
+          <p className="mt-2 text-sm text-gg-muted">Try a different search or category.</p>
         </div>
       ) : (
-        <div className="mt-4 grid grid-cols-2 gap-3 pb-4 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
+        <div className="mt-6 grid grid-cols-2 gap-4 pb-6 md:grid-cols-3 lg:grid-cols-4 md:gap-6">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

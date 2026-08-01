@@ -1,32 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
+const PINK_SHINE_IMAGE = "/products/pink-shine-girl-transparent.png";
 
 export function NewDropBanner() {
   return (
     <Link
       href="/product/pink-shine-girl-set"
-      className="group block overflow-hidden rounded-2xl gg-gradient-banner p-5 md:p-8"
+      data-od-id="new-drop"
+      className="group relative block overflow-hidden rounded-2xl border border-gg-pink/20 gg-gradient-banner p-6 md:p-10"
     >
-      <div className="flex items-center gap-4 md:gap-8">
-        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl md:h-32 md:w-32">
+      <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-gg-pink/10 blur-3xl" />
+      <div className="relative flex items-center gap-6 md:gap-10">
+        <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-gg-ink md:h-36 md:w-36">
           <Image
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop"
+            src={PINK_SHINE_IMAGE}
             alt="Pink Shine Girl Set"
             fill
-            sizes="128px"
-            className="object-cover"
+            sizes="144px"
+            className="object-contain p-2 transition-transform duration-700 group-hover:scale-105"
           />
         </div>
         <div className="flex-1">
-          <p className="text-xs font-bold uppercase tracking-wider text-white/90">New Drop</p>
-          <h3 className="mt-1 text-lg font-black uppercase text-white md:text-xl">
+          <p className="gg-editorial-label text-white/70">New Drop</p>
+          <h3 className="gg-display mt-2 text-2xl uppercase md:text-3xl">
             Pink Shine Girl Set
           </h3>
-          <p className="mt-1 text-xs text-white/80 md:text-sm">#WTTB — What They Talkin Bout</p>
-          <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold uppercase text-white transition-transform group-hover:translate-x-1 md:text-sm">
+          <p className="mt-2 text-xs uppercase tracking-[0.15em] text-white/45">
+            #WTTB — What They Talkin Bout
+          </p>
+          <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.2em] text-gg-white transition-all group-hover:gap-3">
             Shop the Collection
-            <ArrowRight className="h-4 w-4" />
+            <ArrowUpRight className="h-4 w-4 text-gg-pink" strokeWidth={1.5} />
           </span>
         </div>
       </div>
