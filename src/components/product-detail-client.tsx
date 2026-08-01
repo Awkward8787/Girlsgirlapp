@@ -46,54 +46,55 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl md:grid md:grid-cols-2 md:gap-12 md:px-6 md:py-8">
-      {/* Image gallery */}
+    <div
+      data-od-id="product-detail"
+      className="mx-auto max-w-7xl md:grid md:grid-cols-2 md:gap-16 md:px-8 md:py-10"
+    >
       <div className="relative">
-        <div className="relative aspect-[3/4] w-full overflow-hidden bg-gg-surface md:rounded-2xl">
+        <div className="relative aspect-[3/4] w-full overflow-hidden border border-white/[0.06] bg-gg-surface md:rounded-2xl">
           <Image
             src={product.images[activeImage] ?? product.imageUrl}
             alt={product.name}
             fill
             priority
             sizes="(max-width:768px) 100vw, 50vw"
-            className="object-cover"
+            className="object-contain p-6 md:p-10"
           />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-gg-black to-transparent" />
+          <div className="gg-image-vignette absolute inset-0" />
         </div>
-        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
           {product.images.map((_, i) => (
             <button
               key={product.images[i]}
               type="button"
               aria-label={`View image ${i + 1}`}
               onClick={() => setActiveImage(i)}
-              className={`h-2 rounded-full transition-all ${
-                i === activeImage ? "w-6 bg-gg-pink" : "w-2 bg-white/40"
+              className={`h-px transition-all duration-300 ${
+                i === activeImage ? "w-8 bg-gg-pink" : "w-3 bg-white/25"
               }`}
             />
           ))}
         </div>
       </div>
 
-      {/* Product info */}
-      <div className="px-4 py-6 md:px-0">
+      <div className="px-4 py-8 md:px-0 md:py-4">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-black uppercase tracking-wide text-white md:text-2xl">
-              {product.name}
-            </h1>
-            <p className="mt-1 text-sm text-gg-muted">{product.subtitle}</p>
+            <p className="gg-editorial-label">{product.subtitle}</p>
+            <h1 className="gg-display mt-2 text-3xl uppercase md:text-4xl">{product.name}</h1>
           </div>
           <button
             type="button"
             aria-label="Add to wishlist"
-            className="shrink-0 rounded-full p-2 text-gg-pink transition-colors hover:bg-gg-pink/10"
+            className="shrink-0 rounded-full border border-white/10 p-2.5 text-white/50 transition-colors hover:border-gg-pink/30 hover:text-gg-pink"
           >
-            <Heart className="h-5 w-5" />
+            <Heart className="h-4 w-4" strokeWidth={1.5} />
           </button>
         </div>
 
-        <p className="mt-3 text-2xl font-bold text-gg-pink">{formatPrice(product.price)}</p>
+        <p className="mt-4 text-2xl font-medium tabular-nums tracking-wide text-gg-pink">
+          {formatPrice(product.price)}
+        </p>
 
         <div className="mt-2 flex items-center gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -181,16 +182,16 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
         </div>
 
         {/* Features */}
-        <div className="mt-8 flex divide-x divide-gg-border rounded-xl border border-gg-border">
+        <div className="mt-8 flex divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06]">
           {product.features.map((feature) => {
             const Icon = featureIcons[feature.icon];
             return (
               <div
                 key={feature.label}
-                className="flex flex-1 flex-col items-center gap-2 px-3 py-4 text-center"
+                className="flex flex-1 flex-col items-center gap-2 px-3 py-5 text-center"
               >
-                <Icon className="h-5 w-5 text-gg-pink" />
-                <span className="text-[10px] font-semibold uppercase leading-tight text-gg-pink-soft">
+                <Icon className="h-4 w-4 text-gg-champagne" strokeWidth={1.5} />
+                <span className="text-[9px] font-medium uppercase leading-tight tracking-wider text-white/45">
                   {feature.label}
                 </span>
               </div>
@@ -198,28 +199,20 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           })}
         </div>
 
-        {/* CTAs */}
-        <div className="mt-6 space-y-3">
-          <Link
-            href="/bag"
-            className="flex w-full items-center justify-center rounded-xl gg-gradient-pink py-4 text-sm font-bold uppercase tracking-wide text-white transition-opacity hover:opacity-90"
-          >
+        <div className="mt-8 space-y-3">
+          <Link href="/bag" className="gg-btn-primary w-full">
             Add to Bag
           </Link>
-          <button
-            type="button"
-            className="flex w-full items-center justify-center gap-1 rounded-xl bg-white py-4 text-sm font-semibold text-black transition-opacity hover:opacity-90"
-          >
+          <button type="button" className="gg-btn-ghost w-full">
             <span aria-hidden="true"></span>
             Pay
           </button>
-          <p className="text-center text-xs text-gg-muted">
-            🔒 Secure checkout · Easy returns
+          <p className="pt-1 text-center text-[11px] uppercase tracking-wider text-white/35">
+            Secure checkout · Easy returns
           </p>
         </div>
 
-        {/* Accordions */}
-        <div className="mt-8 divide-y divide-gg-border border-t border-gg-border">
+        <div className="mt-10 divide-y divide-white/[0.06] border-t border-white/[0.06]">
           {accordionItems.map((item) => (
             <div key={item.id}>
               <button

@@ -1,29 +1,37 @@
 import Link from "next/link";
+import { Crown } from "lucide-react";
 
 interface BrandLogoProps {
   size?: "sm" | "md" | "lg";
   className?: string;
 }
 
-const sizeClasses = {
-  sm: "text-xl",
-  md: "text-2xl",
-  lg: "text-3xl",
+const scriptSizes = {
+  sm: "text-[1.35rem]",
+  md: "text-[1.65rem]",
+  lg: "text-[2rem]",
 };
 
 export function BrandLogo({ size = "md", className = "" }: BrandLogoProps) {
   return (
-    <Link href="/" className={`group flex flex-col items-center ${className}`}>
-      <span
-        className={`font-serif italic tracking-tight text-gg-pink ${sizeClasses[size]} leading-none`}
-        style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-      >
-        <span className="relative">
+    <Link
+      href="/"
+      className={`group flex flex-col items-center transition-opacity hover:opacity-90 ${className}`}
+    >
+      <span className="relative flex items-center gap-1">
+        <Crown
+          className="h-3 w-3 text-gg-champagne opacity-80 transition-transform group-hover:-translate-y-0.5"
+          strokeWidth={1.5}
+          aria-hidden
+        />
+        <span
+          className={`font-display italic leading-none text-gg-pink ${scriptSizes[size]}`}
+          style={{ textShadow: "0 0 40px rgba(233, 30, 140, 0.35)" }}
+        >
           Girls Girl
-          <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-[10px]">👑</span>
         </span>
       </span>
-      <span className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.25em] text-white/70">
+      <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.32em] text-white/45">
         by Bigg Britt
       </span>
     </Link>

@@ -15,7 +15,7 @@ export function StyleFeedGrid({ posts }: StyleFeedGridProps) {
       {posts.map((post) => (
         <article
           key={post.id}
-          className="overflow-hidden rounded-xl bg-gg-surface transition-transform hover:scale-[1.01]"
+          className="overflow-hidden rounded-2xl border border-white/[0.06] bg-gg-surface transition-opacity hover:opacity-95"
         >
           <div className="flex items-center gap-2 px-3 py-2.5">
             <div className="relative h-7 w-7 overflow-hidden rounded-full">
@@ -55,7 +55,7 @@ export function StyleFeedGrid({ posts }: StyleFeedGridProps) {
             <p className="text-xs leading-relaxed text-white/90">{post.caption}</p>
             <Link
               href={`/product/${post.productSlug}`}
-              className="mt-2 flex items-center justify-center gap-1.5 rounded-lg border border-gg-pink/50 py-2 text-xs font-semibold text-gg-pink transition-colors hover:bg-gg-pink/10"
+              className="mt-2 flex items-center justify-center gap-1.5 rounded-full border border-white/15 py-2.5 text-[10px] font-medium uppercase tracking-wider text-white/70 transition-colors hover:border-gg-pink/30 hover:text-gg-pink"
             >
               <ShoppingBag className="h-3.5 w-3.5" />
               Shop This Look

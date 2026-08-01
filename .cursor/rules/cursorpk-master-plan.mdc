@@ -1,0 +1,30 @@
+---
+description: Mandatory master plan — read CursorPK.md before any work in this repo
+alwaysApply: true
+---
+
+# Girls Girl WTTB — Master Plan Required
+
+**Before planning, coding, reviewing, or answering architecture questions in this repository, read and follow:**
+
+- `CursorPK.md` (repo root) — scope, phases, architecture
+- `DESIGN.md` (repo root) — brand tokens, typography, luxury UI rules
+
+## Non-negotiable workflow
+
+1. **Read `CursorPK.md` and `DESIGN.md` first** — especially §0 (status), §6 (customer/member), §8–§8A (admin dashboard + RBAC), §17 (order), §18 (conventions).
+2. **One-percent tasks only** — one task at a time; respect dependencies; if prerequisites are missing, build them first.
+3. **Match current phase** — do not start production iOS/Medusa/Appwrite work when the task is web-prototype scope (or vice versa) unless `CursorPK.md` says that phase is active.
+4. **Strict file scope** — touch only files required for the current task; no unrelated refactors.
+5. **Canonical data** — models in `src/models/`; mock services in `src/services/` until Medusa/Appwrite are connected per the plan.
+6. **Task completion output** — report: files changed, what changed, how to verify, acceptance check status.
+
+## When the plan and code disagree
+
+- **Trust the repo** for what exists today (§0 feature matrix).
+- **Trust `CursorPK.md`** for what should be built next and long-term architecture.
+- If they conflict, update `CursorPK.md` in the same change set or call out the drift explicitly.
+
+## Do not assume exists
+
+iOS (`GirlsGirlWTTB/`), Medusa, Appwrite, API gateway, Stripe integration, and admin dashboard are **planned** — verify §0 before implementing or referencing them.

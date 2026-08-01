@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { AppHeader } from "@/components/app-header";
 import { BottomNav } from "@/components/bottom-nav";
 import "./globals.css";
@@ -9,10 +9,17 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+});
+
 export const metadata: Metadata = {
-  title: "Girls Girl by Bigg Britt",
+  title: "Girls Girl WTTB | by Bigg Britt",
   description:
-    "More than fashion. It's a movement. Shop sets, tops, and community style from Girls Girl by Bigg Britt.",
+    "Sophisticated luxury urbanwear. Support women. Stay loyal. Keep shining. Shop Girls Girl WTTB.",
 };
 
 export const viewport: Viewport = {
@@ -27,13 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-dvh font-sans">
-        <AppHeader />
-        <BottomNav />
-        <main className="pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-8">
-          {children}
-        </main>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+      <body className="relative min-h-dvh font-sans gg-grain">
+        <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-gg-pink/[0.03] via-transparent to-transparent" />
+        <div className="relative">
+          <AppHeader />
+          <BottomNav />
+          <main className="pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-10">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
