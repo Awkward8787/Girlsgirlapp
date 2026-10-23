@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.png" alt="Girls Girl WTTB" width="100%">
+  <img src="assets/banner.png" alt="Girls Girl WTTB" width="100%">
 </p>
 
 # Girls Girl WTTB
@@ -13,6 +13,18 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4&logo=tailwindcss&logoColor=white)
 
 This repo is a responsive UI prototype with a mock catalog. Production target (native iOS + Medusa + Appwrite + API gateway) is described in `CursorPK.md`. Design tokens live in `DESIGN.md`.
+
+
+## How it works
+
+```mermaid
+flowchart LR
+  V[Shopper] --> N[Next.js prototype]
+  N --> S[Shop / product / bag]
+  N --> F[Style feed · profile]
+```
+
+Responsive UI prototype with a mock catalog. Production target (native iOS + Medusa + Appwrite) is described in `CursorPK.md`; this repo is the web prototype only.
 
 ## Features
 
